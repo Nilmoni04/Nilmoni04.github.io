@@ -459,6 +459,13 @@
     transition: transform .4s;
   }
   .project-card:hover::before { transform: scaleX(1); }
+
+  /* New: ML project cards get a teal accent stripe */
+  .project-card.ml-card:hover { border-color: var(--accent); }
+  .project-card.ml-card::before {
+    background: linear-gradient(90deg, var(--accent), #22d3ee);
+  }
+
   .project-num {
     font-family: var(--serif);
     font-size: 4rem;
@@ -480,6 +487,12 @@
     border: 1px solid rgba(245,158,11,0.3);
     padding: 3px 9px;
     background: rgba(245,158,11,0.05);
+  }
+  /* ML stack tags in green */
+  .stack-tag.ml {
+    color: var(--accent);
+    border-color: rgba(74,222,128,0.3);
+    background: rgba(74,222,128,0.05);
   }
   .project-title {
     font-family: var(--serif);
@@ -516,6 +529,12 @@
     font-size: .45rem;
     top: 3px;
   }
+  .project-card.ml-card .project-highlights li::before {
+    color: var(--accent);
+  }
+  .project-links {
+    display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+  }
   .project-link {
     font-family: var(--mono);
     font-size: .65rem;
@@ -528,6 +547,11 @@
     display: inline-flex; align-items: center; gap: 6px;
   }
   .project-link:hover { border-color: var(--accent); }
+  .project-link.demo {
+    color: var(--accent3);
+    border-bottom-color: transparent;
+  }
+  .project-link.demo:hover { border-color: var(--accent3); }
 
   /* ─── EDUCATION ────────────────────────────────── */
   #education { background: var(--surface); }
@@ -797,7 +821,7 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a class="nav-cta" 
-   href="https://drive.google.com/uc?export=download&id=1cMEqKk2zjfxgltzYFa24s1Ck2XKS1cgM" 
+   href="https://drive.google.com/uc?export=download&id=1Twf30KHQcjGX_IiIi1S9IW95j7NXN8RI" 
    download>
   Resume ↗
 </a>
@@ -835,7 +859,7 @@
       <div><span class="code-line-num">09</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-str">"NLP"</span>, <span class="code-str">"Machine Learning"</span>,</div>
       <div><span class="code-line-num">10</span>&nbsp;&nbsp;],</div>
       <div><span class="code-line-num">11</span>&nbsp;&nbsp;cgpa: <span class="code-gr">8.12</span>,</div>
-      <div><span class="code-line-num">12</span>&nbsp;&nbsp;dsa: <span class="code-gr">300</span><span class="code-str">+ problems"</span>,</div>
+      <div><span class="code-line-num">12</span>&nbsp;&nbsp;dsa: <span class="code-gr">500</span><span class="code-str">+ problems"</span>,</div>
       <div><span class="code-line-num">13</span>&nbsp;&nbsp;goal: <span class="code-fn">buildImpact</span>(),</div>
       <div><span class="code-line-num">14</span>};</div>
     </div>
@@ -865,7 +889,7 @@
           <div class="stat-label">CGPA / 10</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">300+</div>
+          <div class="stat-number">500+</div>
           <div class="stat-label">DSA Problems</div>
         </div>
         <div class="stat-card">
@@ -901,6 +925,7 @@
         <div class="skill-tags">
           <span class="skill-tag highlight">Spring Boot</span>
           <span class="skill-tag">Spring MVC</span>
+          <span class="skill-tag highlight">Flask</span>
           <span class="skill-tag">Spring Security</span>
           <span class="skill-tag highlight">Spring Data JPA</span>
           <span class="skill-tag">Hibernate</span>
@@ -921,10 +946,12 @@
           <span class="skill-tag">ANN</span>
           <span class="skill-tag highlight">LSTM</span>
           <span class="skill-tag">GRU</span>
-          <span class="skill-tag">Transformer</span>
+          <span class="skill-tag highlight">Transformer</span>
           <span class="skill-tag highlight">LLMs / GenAI</span>
           <span class="skill-tag">Fine-Tuning</span>
           <span class="skill-tag highlight">LoRA/QLoRA</span>
+          <span class="skill-tag">Keras</span>
+          <span class="skill-tag highlight">TensorFlow</span>
         </div>
       </div>
       <div class="skill-category reveal">
@@ -949,6 +976,7 @@
         <div class="skill-tags">
           <span class="skill-tag highlight">MySQL</span>
           <span class="skill-tag highlight">PostgreSQL</span>
+          <span class="skill-tag highlight">Vector Databases</span>
           <span class="skill-tag">Git</span>
           <span class="skill-tag highlight">GitHub</span>
           <span class="skill-tag">IntelliJ IDEA</span>
@@ -1020,31 +1048,61 @@
     <div class="section-label">Projects</div>
     <h2 class="section-title">Things I've <em>built.</em></h2>
     <div class="projects-grid">
-      <!-- Project 1 -->
-<div class="project-card reveal reveal-delay-1">
-  <div class="project-num">01</div>
-  <div class="project-stack">
-    <span class="stack-tag">Python</span>
-    <span class="stack-tag">Scikit-learn</span>
-    <span class="stack-tag">XGBoost</span>
-    <span class="stack-tag">CatBoost</span>
-    <span class="stack-tag">Flask</span>
-  </div>
-  <h3 class="project-title">Student Exam Score Predictor</h3>
-  <div class="project-subtitle">End-to-End Machine Learning Prediction System</div>
-  <p class="project-desc">
-    Developed a complete machine learning pipeline to predict student math scores using multiple regression models, combined with a deployed Flask web interface for real-time predictions.
-  </p>
-  <ul class="project-highlights">
-    <li>Implemented 7 regression algorithms including Linear Regression, Random Forest, Gradient Boosting, XGBoost, and CatBoost.</li>
-    <li>Performed feature engineering, preprocessing (imputation, scaling, one-hot encoding), and hyperparameter tuning using GridSearchCV, achieving an R² score of 0.87.</li>
-    <li>Deployed the model as a Flask web application with a real-time prediction interface and modular pipeline architecture with artifact management.</li>
-  </ul>
-  <a class="project-link" href="https://github.com/Nilmoni04/student-score-predictor" target="_blank">View on GitHub →</a>
-</div>
-      <!-- Project 2 -->
-      <div class="project-card reveal">
+
+      <!-- Project 01 – Student Math Score Predictor (NEW) -->
+      <div class="project-card ml-card reveal">
+        <div class="project-num">01</div>
+        <div class="project-stack">
+          <span class="stack-tag ml">Python</span>
+          <span class="stack-tag ml">Flask</span>
+          <span class="stack-tag ml">Scikit-learn</span>
+          <span class="stack-tag ml">XGBoost</span>
+          <span class="stack-tag ml">CatBoost</span>
+        </div>
+        <h3 class="project-title">Student Math Score Predictor</h3>
+        <div class="project-subtitle">End-to-End ML Regression Pipeline</div>
+        <p class="project-desc">
+          A machine learning web application that predicts a student's math score based on demographic and academic input features, covering the full ML lifecycle from data ingestion to deployment.
+        </p>
+        <ul class="project-highlights">
+          <li>Built a complete pipeline: data ingestion → transformation → training across 7 regression algorithms (Linear Regression, Random Forest, Gradient Boosting, XGBoost, CatBoost).</li>
+          <li>Applied GridSearchCV hyperparameter tuning, feature engineering, imputation, scaling, and one-hot encoding — achieving an R² score of 0.87 on test data.</li>
+          <li>Deployed as a Flask web app with a real-time prediction interface and modular artifact management architecture.</li>
+        </ul>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/Nilmoni04/student-score-predictor" target="_blank">GitHub →</a>
+        </div>
+      </div>
+
+      <!-- Project 02 – Customer Churn Prediction using ANN (NEW) -->
+      <div class="project-card ml-card reveal reveal-delay-1">
         <div class="project-num">02</div>
+        <div class="project-stack">
+          <span class="stack-tag ml">Python</span>
+          <span class="stack-tag ml">TensorFlow</span>
+          <span class="stack-tag ml">Keras</span>
+          <span class="stack-tag ml">Scikit-learn</span>
+          <span class="stack-tag ml">Streamlit</span>
+        </div>
+        <h3 class="project-title">Customer Churn Prediction</h3>
+        <div class="project-subtitle">ANN · Deep Learning · Streamlit Deployment</div>
+        <p class="project-desc">
+          Predicts customer churn using an Artificial Neural Network built with TensorFlow/Keras, featuring an interactive Streamlit app for real-time inference — a complete end-to-end ML workflow.
+        </p>
+        <ul class="project-highlights">
+          <li>Designed and trained a multi-layer ANN with TensorFlow/Keras; applied Label Encoding and One-Hot Encoding for categorical feature handling.</li>
+          <li>Built a robust preprocessing pipeline with feature scaling (StandardScaler) and handled class imbalance for reliable prediction accuracy.</li>
+          <li>Deployed as an interactive Streamlit web application enabling live churn probability predictions directly from user inputs.</li>
+        </ul>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/Nilmoni04/customer-churn-analysis" target="_blank">GitHub →</a>
+          <a class="project-link demo" href="https://customer-churn-analysis-rmq2qoghctbzqzvhajxemy.streamlit.app/" target="_blank">Live Demo ↗</a>
+        </div>
+      </div>
+
+      <!-- Project 03 – SwasthyaSathi -->
+      <div class="project-card reveal">
+        <div class="project-num">03</div>
         <div class="project-stack">
           <span class="stack-tag">Spring Boot</span>
           <span class="stack-tag">Spring Data JPA</span>
@@ -1059,11 +1117,14 @@
           <li>Built an emergency ambulance module with real-time MySQL queries.</li>
           <li>Improved data retrieval efficiency by 25% via optimized JPA queries and strategic indexing.</li>
         </ul>
-        <a class="project-link" href="https://github.com/Nilmoni04/rural-health-care-springboot" target="_blank">View on GitHub →</a>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/Nilmoni04/rural-health-care-springboot" target="_blank">GitHub →</a>
+        </div>
       </div>
-      <!-- Project 3 -->
+
+      <!-- Project 04 – Online Job Board -->
       <div class="project-card reveal reveal-delay-1">
-        <div class="project-num">03</div>
+        <div class="project-num">04</div>
         <div class="project-stack">
           <span class="stack-tag">Spring Boot</span>
           <span class="stack-tag">Spring Security</span>
@@ -1079,28 +1140,34 @@
           <li>Integrated Spring Data JPA with MySQL to handle thousands of job records efficiently.</li>
           <li>Designed modular architecture coupling a dynamic backend with a responsive frontend.</li>
         </ul>
-        <a class="project-link" href="https://github.com/Nilmoni04/job-application-website" target="_blank">View on GitHub →</a>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/Nilmoni04/job-application-website" target="_blank">GitHub →</a>
+        </div>
       </div>
-      <!-- Project 4 -->
-<div class="project-card reveal reveal-delay-2">
-  <div class="project-num">04</div>
-  <div class="project-stack">
-    <span class="stack-tag">Python</span>
-    <span class="stack-tag">Scikit-learn</span>
-    <span class="stack-tag">Pandas</span>
-    <span class="stack-tag">NumPy</span>
-    <span class="stack-tag">Matplotlib</span>
-  </div>
-  <h3 class="project-title">LoanSense</h3>
-  <div class="project-subtitle">ML-Based Loan Approval System</div>
-  <p class="project-desc">A machine learning pipeline that predicts loan eligibility using supervised learning models, complete with end-to-end data preprocessing, feature engineering, and multi-model evaluation.</p>
-  <ul class="project-highlights">
-    <li>Built and compared multiple supervised learning models (Logistic Regression, Decision Tree, Random Forest) achieving high classification accuracy on real-world loan datasets.</li>
-    <li>Engineered a robust preprocessing pipeline handling missing values, outlier treatment, label encoding, and feature scaling to ensure clean model inputs.</li>
-    <li>Evaluated models using accuracy, precision, recall, F1-score, and ROC-AUC metrics; visualized results with confusion matrices and feature importance plots.</li>
-  </ul>
-  <a class="project-link" href="https://github.com/Nilmoni04/loan-approval-system" target="_blank">View on GitHub →</a>
-</div>
+
+      <!-- Project 05 – LoanSense -->
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-num">05</div>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Scikit-learn</span>
+          <span class="stack-tag">Pandas</span>
+          <span class="stack-tag">NumPy</span>
+          <span class="stack-tag">Matplotlib</span>
+        </div>
+        <h3 class="project-title">LoanSense</h3>
+        <div class="project-subtitle">ML-Based Loan Approval System</div>
+        <p class="project-desc">A machine learning pipeline that predicts loan eligibility using supervised learning models, complete with end-to-end data preprocessing, feature engineering, and multi-model evaluation.</p>
+        <ul class="project-highlights">
+          <li>Built and compared multiple supervised learning models (Logistic Regression, Decision Tree, Random Forest) achieving high classification accuracy on real-world loan datasets.</li>
+          <li>Engineered a robust preprocessing pipeline handling missing values, outlier treatment, label encoding, and feature scaling to ensure clean model inputs.</li>
+          <li>Evaluated models using accuracy, precision, recall, F1-score, and ROC-AUC metrics; visualized results with confusion matrices and feature importance plots.</li>
+        </ul>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/Nilmoni04/loan-approval-system" target="_blank">GitHub →</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1222,7 +1289,7 @@
           <span class="contact-item-text">github.com/Nilmoni04</span>
           <span class="contact-item-arrow">→</span>
         </a>
-        <a class="contact-item" href="https://drive.google.com/uc?export=download&id=1cMEqKk2zjfxgltzYFa24s1Ck2XKS1cgM" 
+        <a class="contact-item" href="https://drive.google.com/uc?export=download&id=1Twf30KHQcjGX_IiIi1S9IW95j7NXN8RI" 
    download target="_blank">
           <span class="contact-item-icon">📄</span>
           <span class="contact-item-text">Download Resume</span>
@@ -1262,7 +1329,7 @@
     <a href="https://github.com/Nilmoni04" target="_blank">GitHub</a>
     <a href="https://www.linkedin.com/in/nilmoni-pangas-147504293/" target="_blank">LinkedIn</a>
     <a class="nav-cta" 
-   href="https://drive.google.com/uc?export=download&id=1cMEqKk2zjfxgltzYFa24s1Ck2XKS1cgM" 
+   href="https://drive.google.com/uc?export=download&id=1Twf30KHQcjGX_IiIi1S9IW95j7NXN8RI" 
    download>
   Resume
 </a>
